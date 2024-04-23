@@ -1,7 +1,7 @@
 "use client"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { CategoryColumn } from "./columns"
+import { SizeColumn } from "./columns"
 import { Button } from "@/components/ui/button"
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react"
 import { useParams, useRouter } from "next/navigation"
@@ -11,7 +11,7 @@ import axios from "axios"
 import { AlertModal } from "@/components/modals/alert-modal"
 
 interface CellActionProps {
-    data: CategoryColumn
+    data: SizeColumn
 }
 export const CellAction : React.FC<CellActionProps> = ({
     data
@@ -26,11 +26,11 @@ export const CellAction : React.FC<CellActionProps> = ({
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/categories/${data.id}`)
+            await axios.delete(`/api/${params.storeId}/sizes/${data.id}`)
             router.refresh();
-            toast.success("Category Deleted");
+            toast.success("Size Deleted");
         } catch (error) {
-            toast.error("Make sure you no longer have used products in this category")
+            toast.error("Make sure you no longer have used size data")
         } finally{
             setLoading(false);
             setOpen(false);
@@ -54,7 +54,7 @@ export const CellAction : React.FC<CellActionProps> = ({
                 <DropdownMenuLabel> 
                     Actions
                 </DropdownMenuLabel>
-                <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/categories/${data.id}`)}>
+                <DropdownMenuItem onClick={() => router.push(`/${params.storeId}/sizes/${data.id}`)}>
                     <Edit className="mr-2 h-4 w-4" />
                     Update
                 </DropdownMenuItem>
