@@ -104,7 +104,7 @@ model Image {
 
 model Order {
   id String @id @map("_id") @default(auto()) @db.ObjectId
-  storeId String
+  storeId String @db.ObjectId
   store Store @relation("StoreToOrder",fields: [storeId], references: [id])
   address String @default("")
   phone String @default("")
